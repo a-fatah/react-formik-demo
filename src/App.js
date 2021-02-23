@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import { Container, Row, Col, Form, Button } from "react-bootstrap-v5";
+import { OrderForm } from "./components/OrderForm";
+import { CustomersTable } from "./components/CustomersTable";
+import CustomersContext from "./CustomersContext";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className="mt-4 p-3">
+      <Row>
+        <Col xs={12} md={8}>
+          <CustomersContext.Provider value={[{ name: "Abdul Fatah" }]}>
+            <CustomersTable />
+          </CustomersContext.Provider>
+        </Col>
+        <Col xs={12} md={4}>
+          <OrderForm />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
