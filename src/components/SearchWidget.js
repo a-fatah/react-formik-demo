@@ -1,23 +1,21 @@
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
-import { Form, InputGroup, Row, Col, Button } from "react-bootstrap-v5";
+import { Form, Button } from "react-bootstrap-v5";
 import InputMask from "react-input-mask";
 
 export default () => {
   const [param, setParam] = useState("order");
 
   return (
-    <div className="border">
-      <Form>
-        <Row className="mx-1 my-2">
-          <Col sm={2}>
-            <Form.Label className="col-form-label" htmlFor="searchStr">
-              Search by
-            </Form.Label>
-          </Col>
-          <Col sm={10} className="d-flex align-items-center">
-            <div className="w-100 d-flex">
+    <div className="d-flex">
+      <div className="border">
+        <Form>
+          <div className="m-2">
+            <div className="d-flex align-items-center">
+              <Form.Label className="col-form-label" htmlFor="searchStr">
+                Search by
+              </Form.Label>
               <Form.Check
                 type="radio"
                 name="searchBy"
@@ -37,15 +35,8 @@ export default () => {
                 label="Phone"
               />
             </div>
-          </Col>
-        </Row>
-        <Row className="mx-1 my-3">
-          <Col sm={2}>
-            <Form.Label className="col-form-label">
-              {param === "order" ? "Order No." : "Phone"}
-            </Form.Label>
-          </Col>
-          <Col sm={5} className="ms-2">
+          </div>
+          <div className="m-2">
             {param === "phone" ? (
               <>
                 <InputMask
@@ -54,7 +45,9 @@ export default () => {
                   alwaysShowMask={false}
                   placeholder="Phone number"
                 >
-                  {(props) => <Form.Control {...props} type="tel" />}
+                  {(props) => (
+                    <Form.Control className="mb-2" {...props} type="tel" />
+                  )}
                 </InputMask>
                 <Form.Control.Feedback
                   type="invalid"
@@ -62,16 +55,20 @@ export default () => {
                 ></Form.Control.Feedback>
               </>
             ) : (
-              <Form.Control type="text" placeholder="Order No" />
+              <Form.Control
+                className="mb-2"
+                type="text"
+                placeholder="Order No"
+              />
             )}
-          </Col>
-          <Col sm={3} className="p-0 m-0">
-            <Button type="submit">
-              <FontAwesomeIcon icon={faSearch} /> Search
-            </Button>
-          </Col>
-        </Row>
-      </Form>
+            <div className="mb-2">
+              <Button type="submit">
+                <FontAwesomeIcon icon={faSearch} /> Search
+              </Button>
+            </div>
+          </div>
+        </Form>
+      </div>
     </div>
   );
 };
